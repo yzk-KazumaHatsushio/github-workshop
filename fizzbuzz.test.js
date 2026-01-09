@@ -35,4 +35,37 @@ describe('run', () => {
     ].join('\n');
     expect(run(1,20)).toBe(expected);
   });
+
+  test('performance test with 100,000 numbers', () => {
+    const iterations = 3;
+    let totalTime = 0;
+    
+    for (let j = 0; j < iterations; j++) {
+      const start = performance.now();
+      const result = run(1, 100000);
+      const elapsed = performance.now() - start;
+      totalTime += elapsed;
+      
+      expect(result).toBeDefined();
+      expect(typeof result).toBe('string');
+    }
+    
+    const avgTime = Math.round(totalTime / iterations);
+    console.log(`Performance test (100,000) - Average: ${avgTime}ms over ${iterations} runs`);
+    
+    // Should complete in reasonable time (less than 1 second per run on average)
+    expect(avgTime).toBeLessThan(1000);
+  });
+
+  test('performance test with 1,000,000 numbers', () => {
+    const start = performance.now();
+    const result = run(1, 1000000);
+    const elapsed = performance.now() - start;
+    
+    console.log(`Performance test (1,000,000): ${Math.round(elapsed)}ms`);
+    expect(result).toBeDefined();
+    expect(typeof result).toBe('string');
+    // Should complete in reasonable time (less than 10 seconds)
+    expect(elapsed).toBeLessThan(10000);
+  });
 });

@@ -17,9 +17,10 @@ function fizzBuzz(n) {
 }
 
 function run(start, end) {
-  const results = [];
+  const count = end - start + 1;
+  const results = new Array(count);
   for (let i = start; i <= end; i++) {
-    results.push(fizzBuzz(i));
+    results[i - start] = fizzBuzz(i);
   }
   return results.join('\n');
 }
