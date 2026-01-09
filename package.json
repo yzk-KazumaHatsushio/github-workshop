@@ -1,0 +1,17 @@
+{
+  "name": "github-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/test.js$",
+      "/test3.js$"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
