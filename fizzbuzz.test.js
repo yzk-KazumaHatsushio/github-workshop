@@ -41,9 +41,9 @@ describe('run', () => {
     let totalTime = 0;
     
     for (let j = 0; j < iterations; j++) {
-      const start = Date.now();
+      const start = performance.now();
       const result = run(1, 100000);
-      const elapsed = Date.now() - start;
+      const elapsed = performance.now() - start;
       totalTime += elapsed;
       
       expect(result).toBeDefined();
@@ -53,19 +53,19 @@ describe('run', () => {
     const avgTime = Math.round(totalTime / iterations);
     console.log(`Performance test (100,000) - Average: ${avgTime}ms over ${iterations} runs`);
     
-    // Should complete in reasonable time (less than 5 seconds per run)
-    expect(avgTime).toBeLessThan(5000);
+    // Should complete in reasonable time (less than 1 second per run on average)
+    expect(avgTime).toBeLessThan(1000);
   });
 
   test('performance test with 1,000,000 numbers', () => {
-    const start = Date.now();
+    const start = performance.now();
     const result = run(1, 1000000);
-    const elapsed = Date.now() - start;
+    const elapsed = performance.now() - start;
     
-    console.log(`Performance test (1,000,000): ${elapsed}ms`);
+    console.log(`Performance test (1,000,000): ${Math.round(elapsed)}ms`);
     expect(result).toBeDefined();
     expect(typeof result).toBe('string');
-    // Should complete in reasonable time (less than 30 seconds)
-    expect(elapsed).toBeLessThan(30000);
+    // Should complete in reasonable time (less than 10 seconds)
+    expect(elapsed).toBeLessThan(10000);
   });
 });
