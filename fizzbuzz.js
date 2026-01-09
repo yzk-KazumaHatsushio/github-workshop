@@ -2,7 +2,12 @@
 // Prints FizzBuzz results for numbers in a range (inclusive).
 
 function fizzBuzz(n) {
-  if (typeof n !== 'number' || isNaN(n)) {
+  // Check type first to avoid redundant isNaN evaluation for non-numbers
+  if (typeof n !== 'number') {
+    throw new Error('Input must be a number');
+  }
+  // Check for NaN (typeof NaN === 'number', but it's still invalid)
+  if (isNaN(n)) {
     throw new Error('Input must be a number');
   }
   if (n % 15 === 0) return 'FizzBuzz';
