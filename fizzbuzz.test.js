@@ -20,6 +20,11 @@ describe('fizzBuzz', () => {
     expect(fizzBuzz(15)).toBe('FizzBuzz');
     expect(fizzBuzz(30)).toBe('FizzBuzz');
   });
+
+  test('throws error for non-number input', () => {
+    expect(() => fizzBuzz('a')).toThrow('Input must be a number');
+    expect(() => fizzBuzz(NaN)).toThrow('Input must be a number');
+  });
 });
 
 describe('run', () => {
